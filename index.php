@@ -7,13 +7,13 @@ if (isset($_COOKIE['password'])) {
     setcookie('password', '', time()-1);
 }
 
-$userList = json_decode(file_get_contents('{login}.json'));
+$userList = json_decode(file_get_contents('{admin}.json'));
 
 if(isset($_POST['submit'])) {
     session_start();
 
-    if (!file_exists('{login}.json')) {
-        echo 'Файл {login} не найден';
+    if (!file_exists('{admin}.json')) {
+        echo 'Файл {admin} не найден';
         exit;
     }
 
@@ -22,7 +22,7 @@ if(isset($_POST['submit'])) {
 
     if($password !== '') {
 
-        foreach ($userList->users as $user) {
+        foreach ($userList as $user) {
             if ($login === $user->login && md5($password) === md5($user->password)) {
                     setcookie('login', $user->login, time() + 60 * 60);
                     setcookie('password', md5($user->password), time() + 60 * 60);

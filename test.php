@@ -2,8 +2,8 @@
 session_start();
 $id = $_SESSION['id'];
 if (!file_exists(__DIR__ . '/tests/' . $_GET["name"] . '.json')) {
-    header('HTTP/1.1 404 Not Found');
-    exit;
+    header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+    exit('<h1>404 Not Found</h1><p>Перейти к <a href="index.php">форме авторизации</a></p>');
 }
 $testFile = '/tests/' . $_GET["name"] . '.json';
 $test = json_decode(file_get_contents(__DIR__ . $testFile));

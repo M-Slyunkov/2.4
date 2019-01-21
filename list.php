@@ -32,7 +32,8 @@
     $counter = 1;
 
     foreach ($files as $file) {
-        if (end(explode('.', $file)) === 'json') {
+        $exp = explode('.', $file);
+        if (end($exp) === 'json') {
             $test = pathinfo($file)['filename'];
             echo '<tr><td>' . $counter . '</td><td><a href="test.php?name=' . $test . '">' . $test . '</a></td>';
             if (isset($_COOKIE['login']) && isset($_COOKIE['password'])) {

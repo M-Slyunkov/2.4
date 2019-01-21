@@ -1,7 +1,7 @@
 <?php
 if(!isset($_COOKIE['login']) || !isset($_COOKIE['password'])) {
-    header('HTTP/1.1 403 Forbidden');
-    exit;
+    header($_SERVER['SERVER_PROTOCOL'] . ' 403 Forbidden');
+    exit('<h1>403 Forbidden</h1><p>Перейти к <a href="index.php">форме авторизации</a></p>');
 }
 if (isset($_FILES['testFile'])) {
     if (is_uploaded_file($_FILES['testFile']['tmp_name'])) {

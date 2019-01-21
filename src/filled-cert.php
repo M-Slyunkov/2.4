@@ -1,5 +1,6 @@
 <?php
-include __DIR__ . '/CertText.php';
+
+include 'certText.php';
 
 $width = getimagesize(__DIR__ . '/blank-cert.png')[0];
 $height = getimagesize(__DIR__ . '/blank-cert.png')[1];
@@ -15,9 +16,9 @@ $wrongX = ($width / 2) - $fontSize * mb_strlen($wrongString) / 7.5;
 imagecopy($image, $im, 0, 0, 0, 0, $width, $height);
 
 
-imagettftext($im, $fontSize + 10, 0, $nameX, 190, $textColor, './andantino.ttf', $name);
-imagettftext($im, $fontSize, 0, $correctX, 290, $textColor, './andantino.ttf', $correctString);
-imagettftext($im, $fontSize, 0, $wrongX, 390, $textColor, './andantino.ttf', $wrongString);
+imagettftext($im, $fontSize + 10, 0, $nameX, 190, $textColor, include 'andantino.ttf', $name);
+imagettftext($im, $fontSize, 0, $correctX, 290, $textColor, include 'andantino.ttf', $correctString);
+imagettftext($im, $fontSize, 0, $wrongX, 390, $textColor, include 'andantino.ttf', $wrongString);
 
 header('Content-type: image/png');
 imagepng($im);
